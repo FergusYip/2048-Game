@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 import Board from './components/Board';
 import ScoreCard from './components/ScoreCard';
@@ -49,25 +49,25 @@ function App() {
     return result;
   };
 
-  const handleKeyPress = (e) => {
-    // if (gameState !== GAME_STATES.PLAYING) {
-    //   if (e.key === 'Enter') {
-    //     setTiles(Game2048.newGame());
-    //     setGameState(GAME_STATES.PLAYING);
-    //   }
-    //   return;
-    // }
-    setGameState((current) =>
-      getNextState(e.key.replace('Arrow', ''), current)
-    );
-  };
-
   useEffect(() => {
+    const handleKeyPress = (e) => {
+      // if (gameState !== GAME_STATES.PLAYING) {
+      //   if (e.key === 'Enter') {
+      //     setTiles(Game2048.newGame());
+      //     setGameState(GAME_STATES.PLAYING);
+      //   }
+      //   return;
+      // }
+      setGameState((current) =>
+        getNextState(e.key.replace('Arrow', ''), current)
+      );
+    };
+
     document.addEventListener('keydown', handleKeyPress);
     return () => {
       document.removeEventListener('keydown', handleKeyPress);
     };
-  }, []);
+  }, [setGameState]);
 
   // Update best score
   useEffect(() => {
