@@ -14,7 +14,7 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  background-color: #cdc1b4;
+  background-color: #29275e;
   color: #f9f6f2;
 }
 
@@ -58,12 +58,10 @@
 
 .tile-1024 {
   background-color: #f0c038;
-  font-size: 4.5rem;
 }
 
 .tile-2048 {
   background-color: #eec22e;
-  font-size: 4.5rem;
 }
 
 @media screen and (max-width: 400px) {

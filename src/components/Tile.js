@@ -1,6 +1,15 @@
 import React, { useRef, useEffect, useState } from 'react';
 import './Tile.css';
 
+const getFontSize = {
+  1: '3rem',
+  2: '3rem',
+  3: 'calc(3rem * 0.8)',
+  4: 'calc(3rem * 0.5)',
+  5: 'calc(3rem * 0.4)',
+  6: 'calc(3rem * 0.3)',
+};
+
 export default function Tile({ tile, update, onUpdate }) {
   const tileRef = useRef(null);
   const [offset, setOffset] = useState(0);
@@ -52,6 +61,7 @@ export default function Tile({ tile, update, onUpdate }) {
         position: 'absolute',
         transform: 'scale(0.3)',
         opacity: 0,
+        fontSize: getFontSize[tile.value.toString().length],
       }}
     >
       {tile.value}
