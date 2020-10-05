@@ -25,3 +25,24 @@
   margin: var(--tile-margin);
   background-color: #cdc1b4;
 }
+
+/* height breakpoints */
+
+@media screen and (max-height: 600px) {
+  #board {
+    margin: 0.5rem 0;
+  }
+}
+
+/* 
+@media screen and (min-height: 960px) {
+  :root {
+    font-size: 20px;
+  }
+}
+
+@media screen and (min-height: 1200px) {
+  :root {
+    font-size: 22px;
+  }
+} */

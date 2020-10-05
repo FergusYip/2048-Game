@@ -17,6 +17,8 @@ body {
   background-color: #faf8ef;
   color: #776e65;
   overflow: hidden;
+  display: flex;
+  flex-flow: column nowrap;
 }
 
 header {
@@ -24,7 +26,7 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 2rem 0 0
+  margin: 2rem 0 0;
 }
 
 h1 {
@@ -39,7 +41,6 @@ h1 {
   flex-direction: column;
   align-items: center;
   overflow: hidden;
-  height: 90vh;
 }
 
 .header {
@@ -90,16 +91,44 @@ h1 {
   .header {
     justify-content: space-between;
   }
-}
-
-@media screen and (min-width: 960px) {
-  :root {
-    font-size: 20px
+  @media screen and (max-height: 600px) {
+    :root {
+      font-size: 16px;
+    }
+    header {
+      margin: 0;
+    }
+  }
+  @media screen and (min-height: 600px) {
+    :root {
+      font-size: 16px;
+    }
+    header {
+      margin: 0;
+    }
+  }
+  @media screen and (min-height: 700px) {
+    :root {
+      font-size: 18px;
+    }
+    header {
+      margin: 0.5rem 0;
+    }
+  }
+  @media screen and (min-height: 800px) {
+    :root {
+      font-size: 20px;
+    }
   }
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 960px) and (min-height: 800px) {
   :root {
-    font-size: 22px
+    font-size: 20px;
+  }
+  body {
+    display: flex;
+    justify-content: center;
+    height: 100vh;
   }
 }
