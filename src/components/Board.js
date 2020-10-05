@@ -1,33 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import './Board.css';
-import Tile from './Tile';
+import React from "react";
+import "./Board.css";
+import Tile from "./Tile";
 
 export default function Board({ tiles }) {
-  const [updateTiles, setUpdateTiles] = useState(false);
-
-  useEffect(() => {
-    window.onresize = () => {
-      setUpdateTiles(true);
-    };
-    return () => {
-      window.onresize = null;
-    };
-  }, []);
-
-  const handleUpdate = () => {
-    setUpdateTiles(false);
-  };
-
   return (
     <div id="board">
-      <div style={{ position: 'relative' }}>
+      <div style={{ position: "relative" }}>
         {tiles.map((tile) => (
-          <Tile
-            key={tile.id}
-            tile={tile}
-            update={updateTiles}
-            onUpdate={handleUpdate}
-          />
+          <Tile key={tile.id} tile={tile} />
         ))}
       </div>
       <table id="board-background">

@@ -1,16 +1,16 @@
-import React, { useRef, useEffect, useState } from 'react';
-import './Tile.css';
+import React, { useRef, useEffect, useState } from "react";
+import "./Tile.css";
 
 const getFontSize = {
-  1: '3rem',
-  2: '3rem',
-  3: 'calc(3rem * 0.8)',
-  4: 'calc(3rem * 0.5)',
-  5: 'calc(3rem * 0.4)',
-  6: 'calc(3rem * 0.3)',
+  1: "3rem",
+  2: "3rem",
+  3: "calc(3rem * 0.8)",
+  4: "calc(3rem * 0.5)",
+  5: "calc(3rem * 0.4)",
+  6: "calc(3rem * 0.3)",
 };
 
-export default function Tile({ tile, update, onUpdate }) {
+export default function Tile({ tile }) {
   const tileRef = useRef(null);
   const [offset, setOffset] = useState(0);
   const [isFirst, setIsFirst] = useState(true);
@@ -24,9 +24,9 @@ export default function Tile({ tile, update, onUpdate }) {
     tileRef.current.style.top = `${tile.y * tempOffset}px`;
     tileRef.current.style.left = `${tile.x * tempOffset}px`;
 
-    tileRef.current.style.transform = 'scale(1)';
+    tileRef.current.style.transform = "scale(1)";
     tileRef.current.style.opacity = 1;
-    tileRef.current.style.transition = 'all 200ms';
+    tileRef.current.style.transition = "all 200ms";
     setIsFirst(false);
   }, [tile, tileRef, isFirst]);
 
@@ -43,23 +43,26 @@ export default function Tile({ tile, update, onUpdate }) {
     if (isFirst) return;
     tileRef.current.style.top = `${tile.y * offset}px`;
     tileRef.current.style.left = `${tile.x * offset}px`;
-    tileRef.current.style.transition = 'all 0.1s';
+    tileRef.current.style.transition = "all 0.1s";
   }, [tile, isFirst, offset]);
 
   useEffect(() => {
-    if (update) {
+    const resizeHandler = () => {
       setOffset(tileRef.current.clientWidth * 1.2);
-      onUpdate();
-    }
-  }, [update, onUpdate]);
+    };
+    window.addEventListener("resize", resizeHandler);
+    return () => {
+      window.removeEventListener("resize", resizeHandler);
+    };
+  }, []);
 
   return (
     <div
       ref={tileRef}
       className={`tile tile-${tile.value}`}
       style={{
-        position: 'absolute',
-        transform: 'scale(0.3)',
+        position: "absolute",
+        transform: "scale(0.3)",
         opacity: 0,
         fontSize: getFontSize[tile.value.toString().length],
       }}
