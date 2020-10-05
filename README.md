@@ -3,7 +3,7 @@
 2048 is a single-player puzzle game originally released in March 2014. The web application in this repository implements the game in [React](https://reactjs.org/). It is fully responsive and works on both desktop and mobile.
 
 <div align="center">
-    <img src="https://raw.githubusercontent.com/FergusYip/2048-Game/main/img/demo.png" alt="Image of the game" style="max-height:400px;">
+    <img src="https://raw.githubusercontent.com/FergusYip/2048-Game/main/img/demo.png" alt="Image of the game" width="526" height="600">
 </div>
 
 ## How to Play?
