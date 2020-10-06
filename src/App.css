@@ -17,16 +17,17 @@ body {
   background-color: #faf8ef;
   color: #776e65;
   overflow: hidden;
+  height: 100vh;
 }
 
 .App {
   width: 100%;
   position: relative;
   display: flex;
-  justify-content: center;
   flex-direction: column;
   align-items: center;
   overflow: hidden;
+  height: 100vh;
 }
 
 @media screen and (min-width: 560px) {
