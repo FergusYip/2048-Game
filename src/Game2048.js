@@ -1,9 +1,9 @@
 const GRID_SIZE = 4;
 
 export const GAME_STATES = {
-  WIN: 'WIN',
-  LOSS: 'LOSS',
-  PLAYING: 'PLAYING',
+  WIN: "WIN",
+  LOSS: "LOSS",
+  PLAYING: "PLAYING",
 };
 Object.freeze(GAME_STATES);
 
@@ -29,13 +29,17 @@ export const newTile = (value, x, y) => {
   };
 };
 
-export const newGame = () => ({
-  ...INITIAL_STATE,
-  tiles: [
-    newTile(2, getRandomInt(4), getRandomInt(4)),
-    newTile(2, getRandomInt(4), getRandomInt(4)),
-  ],
-});
+export const newGame = () => {
+  let tile1 = newTile(2, getRandomInt(4), getRandomInt(4));
+  let tile2 = newTile(2, getRandomInt(4), getRandomInt(4));
+  while (tile1.x === tile2.x && tile1.y === tile2.y) {
+    tile2 = newTile(2, getRandomInt(4), getRandomInt(4));
+  }
+  return {
+    ...INITIAL_STATE,
+    tiles: [tile1, tile2],
+  };
+};
 
 export function getRowTiles(tiles, rowIndex) {
   return tiles.filter((tile) => tile.y === rowIndex);
@@ -96,7 +100,7 @@ export function nextUpState(gameState) {
 
   let nextState = { ...gameState, tiles: [] };
   for (const column of columns) {
-    const { tiles, score } = shiftTilesLeft(column, 'y', false);
+    const { tiles, score } = shiftTilesLeft(column, "y", false);
     nextState.tiles.push(...tiles);
     nextState.score += score;
   }
@@ -111,7 +115,7 @@ export function nextDownState(gameState) {
 
   let nextState = { ...gameState, tiles: [] };
   for (const column of columns) {
-    const { tiles, score } = shiftTilesLeft(column, 'y', true);
+    const { tiles, score } = shiftTilesLeft(column, "y", true);
     nextState.tiles.push(...tiles);
     nextState.score += score;
   }
@@ -126,7 +130,7 @@ export function nextLeftState(gameState) {
 
   let nextState = { ...gameState, tiles: [] };
   for (const row of rows) {
-    const { tiles, score } = shiftTilesLeft(row, 'x', false);
+    const { tiles, score } = shiftTilesLeft(row, "x", false);
     nextState.tiles.push(...tiles);
     nextState.score += score;
   }
@@ -141,7 +145,7 @@ export function nextRightState(gameState) {
 
   let nextState = { ...gameState, tiles: [] };
   for (const row of rows) {
-    const { tiles, score } = shiftTilesLeft(row, 'x', true);
+    const { tiles, score } = shiftTilesLeft(row, "x", true);
     nextState.tiles.push(...tiles);
     nextState.score += score;
   }
