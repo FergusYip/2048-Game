@@ -1,0 +1,22 @@
+.overlay {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 0px 0px 50px;
+    background-color: rgba(255, 255, 255, 0.4);
+    font-size: 2rem;
+    text-align: center;
+    color: #746d64;
+}
+
+.overlay h1 {
+    margin: 0px;
+}
+
+.overlay p {
+    margin: 0px;
+}

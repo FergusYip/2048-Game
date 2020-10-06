@@ -1,40 +1,41 @@
-import React, { useEffect } from 'react';
-import './App.css';
-import Board from './components/Board';
-import ScoreCard from './components/ScoreCard';
-import Game2048, { isSameState, updateState, GAME_STATES } from './Game2048';
-import useLocalStorage from './hooks/useLocalStorage';
-import { useSwipeable } from 'react-swipeable';
+import React, { useEffect } from "react";
+import "./App.css";
+import Board from "./components/Board";
+import Header from "./components/Header";
+import Game2048, { isSameState, updateState, GAME_STATES } from "./Game2048";
+import useLocalStorage from "./hooks/useLocalStorage";
+import { useSwipeable } from "react-swipeable";
+import Overlay from "./components/Overlay";
 
 function App() {
   const [gameState, setGameState] = useLocalStorage(
-    'gameState',
+    "gameState",
     Game2048.newGame()
   );
-  const [bestScore, setBestScore] = useLocalStorage('bestScore', 0);
+  const [bestScore, setBestScore] = useLocalStorage("bestScore", 0);
   const swipeHandlers = useSwipeable({
-    onSwipedUp: () => setGameState((current) => getNextState('up', current)),
+    onSwipedUp: () => setGameState((current) => getNextState("up", current)),
     onSwipedDown: () =>
-      setGameState((current) => getNextState('down', current)),
+      setGameState((current) => getNextState("down", current)),
     onSwipedLeft: () =>
-      setGameState((current) => getNextState('left', current)),
+      setGameState((current) => getNextState("left", current)),
     onSwipedRight: () =>
-      setGameState((current) => getNextState('right', current)),
+      setGameState((current) => getNextState("right", current)),
   });
 
   const getNextState = (direction, current) => {
     let result = current;
     switch (direction.toLowerCase()) {
-      case 'up':
+      case "up":
         result = Game2048.nextUpState(result);
         break;
-      case 'down':
+      case "down":
         result = Game2048.nextDownState(result);
         break;
-      case 'left':
+      case "left":
         result = Game2048.nextLeftState(result);
         break;
-      case 'right':
+      case "right":
         result = Game2048.nextRightState(result);
         break;
       default:
@@ -59,13 +60,13 @@ function App() {
       //   return;
       // }
       setGameState((current) =>
-        getNextState(e.key.replace('Arrow', ''), current)
+        getNextState(e.key.replace("Arrow", ""), current)
       );
     };
 
-    document.addEventListener('keydown', handleKeyPress);
+    document.addEventListener("keydown", handleKeyPress);
     return () => {
-      document.removeEventListener('keydown', handleKeyPress);
+      document.removeEventListener("keydown", handleKeyPress);
     };
   }, [setGameState]);
 
@@ -78,25 +79,16 @@ function App() {
 
   return (
     <div className="App" {...swipeHandlers}>
-      <header>
-        <div className="header">
-          <h1>2048</h1>
-          <div className="score-container">
-            <ScoreCard score={gameState.score} label="score" />
-            <ScoreCard score={bestScore} label="best" />
-          </div>
-        </div>
-      </header>
+      <Header score={gameState.score} bestScore={bestScore} />
       <Board
         tiles={gameState.tiles}
         blur={gameState.state !== GAME_STATES.PLAYING}
       />
-      {/* {gameState !== GAME_STATES.PLAYING && (
-        <div id="overlay">
-          <h1>{gameState === GAME_STATES.WIN ? 'Victory' : 'Game Over'}</h1>
-          <p>Press Enter to restart</p>
-        </div>
-      )} */}
+      {/* <Overlay
+        display={gameState !== GAME_STATES.PLAYING}
+        title={gameState === GAME_STATES.WIN ? "Victory" : "Game Over"}
+        subtitle="Press Enter to restart"
+      /> */}
     </div>
   );
 }

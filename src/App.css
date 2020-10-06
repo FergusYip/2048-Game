@@ -17,24 +17,10 @@ body {
   background-color: #faf8ef;
   color: #776e65;
   overflow: hidden;
-  display: flex;
-  flex-flow: column nowrap;
-}
-
-header {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 2rem 0 0;
-}
-
-h1 {
-  font-size: 5em;
-  margin: 1rem 0;
 }
 
 .App {
+  width: 100%;
   position: relative;
   display: flex;
   justify-content: center;
@@ -43,76 +29,23 @@ h1 {
   overflow: hidden;
 }
 
-.header {
-  display: flex;
-  flex-flow: row wrap;
-  align-items: center;
-  justify-content: center;
-  width: 90%;
-  max-width: 30rem;
-}
-
-/* 
-#overlay {
-  position: absolute;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  padding: 0px 0px 50px;
-  background-color: rgba(255, 255, 255, 0.4);
-  font-size: 4rem;
-  text-align: center;
-  color: #746d64;
-}
-
-#overlay h1 {
-  margin: 0px;
-}
-
-#overlay p {
-  margin: 0px;
-} */
-
-.score-container {
-  display: flex;
-}
-
-.score-container .score-card {
-  margin-left: 0.5rem;
-}
-
 @media screen and (min-width: 560px) {
   :root {
     font-size: 18px;
   }
-  .header {
-    justify-content: space-between;
-  }
   @media screen and (max-height: 600px) {
     :root {
       font-size: 16px;
-    }
-    header {
-      margin: 0;
     }
   }
   @media screen and (min-height: 600px) {
     :root {
       font-size: 16px;
     }
-    header {
-      margin: 0;
-    }
   }
   @media screen and (min-height: 700px) {
     :root {
       font-size: 18px;
-    }
-    header {
-      margin: 0.5rem 0;
     }
   }
   @media screen and (min-height: 800px) {
@@ -125,10 +58,5 @@ h1 {
 @media screen and (min-width: 960px) and (min-height: 800px) {
   :root {
     font-size: 20px;
-  }
-  body {
-    display: flex;
-    justify-content: center;
-    height: 100vh;
   }
 }

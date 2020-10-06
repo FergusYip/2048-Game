@@ -1,0 +1,50 @@
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem 0 0;
+}
+
+.header-container {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 30rem;
+}
+
+.header-container h1 {
+  font-size: 5rem;
+  margin: 1rem 0;
+}
+
+.score-container {
+  display: flex;
+}
+
+.score-container .score-card {
+  margin-left: 0.5rem;
+}
+
+@media screen and (min-width: 560px) {
+  .header-container {
+    justify-content: space-around;
+  }
+  @media screen and (max-height: 600px) {
+    header {
+      margin: 0;
+    }
+  }
+  @media screen and (min-height: 600px) {
+    header {
+      margin: 0;
+    }
+  }
+  @media screen and (min-height: 700px) {
+    header {
+      margin: 0.5rem 0;
+    }
+  }
+}
