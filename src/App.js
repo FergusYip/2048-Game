@@ -23,6 +23,10 @@ function App() {
       setGameState((current) => getNextState("right", current)),
   });
 
+  const restartGame = () => {
+    setGameState(Game2048.newGame());
+  };
+
   const getNextState = (direction, current) => {
     let result = current;
     switch (direction.toLowerCase()) {
@@ -52,13 +56,13 @@ function App() {
 
   useEffect(() => {
     const handleKeyPress = (e) => {
-      // if (gameState !== GAME_STATES.PLAYING) {
-      //   if (e.key === 'Enter') {
-      //     setTiles(Game2048.newGame());
-      //     setGameState(GAME_STATES.PLAYING);
-      //   }
-      //   return;
-      // }
+      console.log(e.key);
+      if (gameState.state !== GAME_STATES.PLAYING) {
+        if (e.key === "Enter") {
+          setGameState(Game2048.newGame());
+        }
+        return;
+      }
       setGameState((current) =>
         getNextState(e.key.replace("Arrow", ""), current)
       );
@@ -68,7 +72,7 @@ function App() {
     return () => {
       document.removeEventListener("keydown", handleKeyPress);
     };
-  }, [setGameState]);
+  }, [gameState, setGameState]);
 
   // Update best score
   useEffect(() => {
@@ -80,15 +84,13 @@ function App() {
   return (
     <div className="App" {...swipeHandlers}>
       <Header score={gameState.score} bestScore={bestScore} />
-      <Board
-        tiles={gameState.tiles}
-        blur={gameState.state !== GAME_STATES.PLAYING}
-      />
-      {/* <Overlay
-        display={gameState !== GAME_STATES.PLAYING}
+      <Board tiles={gameState.tiles} />
+      <Overlay
+        display={gameState.state !== GAME_STATES.PLAYING}
         title={gameState === GAME_STATES.WIN ? "Victory" : "Game Over"}
-        subtitle="Press Enter to restart"
-      /> */}
+        subtitle="Click to restart"
+        onClick={restartGame}
+      />
     </div>
   );
 }
