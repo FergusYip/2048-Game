@@ -3,7 +3,7 @@ import "./Tile.css";
 
 const getFontSize = {
   1: "3rem",
-  2: "3rem",
+  2: "2.5rem",
   3: "calc(3rem * 0.8)",
   4: "calc(3rem * 0.5)",
   5: "calc(3rem * 0.4)",
