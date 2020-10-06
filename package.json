@@ -1,5 +1,5 @@
 {
-  "name": "exercise2",
+  "name": "game-2048",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
