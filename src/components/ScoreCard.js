@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
-import './ScoreCard.css';
+import React, { useEffect, useRef, useState } from "react";
+import "./ScoreCard.css";
 
 export default function ScoreCard({ label, score }) {
   const [displayScore, setDisplayScore] = useState(score);
@@ -12,11 +12,11 @@ export default function ScoreCard({ label, score }) {
   }, [score, displayScore]);
 
   useEffect(() => {
-    if (difference === 0) return;
+    if (difference <= 0) return;
     addition.current.textContent = `+${difference}`;
-    addition.current.style.animation = 'slide-off 0.5s ease-in';
+    addition.current.style.animation = "slide-off 0.5s ease-in";
     setTimeout(() => {
-      addition.current.style.animation = 'none';
+      addition.current.style.animation = "none";
       setDifference(0);
     }, 500);
   }, [difference]);
